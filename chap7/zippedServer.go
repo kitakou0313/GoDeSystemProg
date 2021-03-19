@@ -32,8 +32,8 @@ func processSession(conn net.Conn) {
 			} else if err == io.EOF {
 				break
 			}
+			panic(err)
 		}
-		panic(err)
 
 		dump, err := httputil.DumpRequest(req, true)
 		if err != nil {
