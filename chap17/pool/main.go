@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"runtime"
 	"sync"
 )
 
@@ -17,8 +18,8 @@ func main() {
 	pool.Put("Manualy added: 1")
 	pool.Put("Manualy added: 2")
 
-	fmt.Println(pool.Get())
-	fmt.Println(pool.Get())
+	runtime.GC()
+
 	fmt.Println(pool.Get())
 
 }
