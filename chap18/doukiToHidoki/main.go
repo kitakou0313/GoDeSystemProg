@@ -18,14 +18,24 @@ func readFileSync(filePath string) string {
 }
 
 func main() {
-	inputs := make(chan string)
+	inputs1 := make(chan string)
+	inputs2 := make(chan string)
+
 	start := time.Now()
 	// 処理
-	go readFileAsync("a.txt", inputs)
-	go readFileAsync("b.txt", inputs)
+	go readFileAsync("a.txt", inputs1)
+	go readFileAsync("b.txt", inputs2)
 
-	_ = <-inputs
-	_ = <-inputs
+	for {
+		select {
+		case <-inputs1:
+			break
+		case <-inputs2:
+			break
+		default:
+			break
+		}
+	}
 
 	end := time.Now()
 	fmt.Printf("%f秒\n", (end.Sub(start)).Seconds())
